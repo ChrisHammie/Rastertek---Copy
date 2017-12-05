@@ -1,0 +1,3 @@
+﻿  InputClass.cpp
+c:\users\chris\desktop\rastertek - copy\rastertek\inputclass.cpp(98): warning C4316: 'CameraClass': object allocated on the heap may not be aligned 16
+  Rastertek.vcxproj -> C:\Users\chris\Desktop\Rastertek - Copy\Debug\Rastertek.exe
