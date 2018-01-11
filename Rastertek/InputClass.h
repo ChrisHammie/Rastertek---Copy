@@ -33,6 +33,9 @@ private:
 	bool ReadMouse();
 	void ProcessInput();
 
+	float tempRotX = 0.0f;
+	float tempRotY = 0.0f;
+
 	IDirectInput8* m_directInput;
 	IDirectInputDevice8* m_keyboard;
 	IDirectInputDevice8* m_mouse;

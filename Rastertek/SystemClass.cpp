@@ -1,6 +1,6 @@
 
 #include "SystemClass.h"
-
+#include "AntTweakBar.h"
 
 SystemClass::SystemClass()
 {
@@ -31,6 +31,7 @@ bool SystemClass::Initialize()
 
 	// Initialize the windows api
 	InitializeWindows(screenWidth, screenHeight);
+	
 
 	// Create the input object
 	m_Input = new InputClass;
@@ -173,7 +174,15 @@ bool SystemClass::Frame()
 
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
-	return DefWindowProc(hwnd, umsg, wparam, lparam);
+	if (TwEventWin(hwnd, umsg, wparam, lparam))
+	{
+		return 0;
+	}
+	else
+	{
+		return DefWindowProc(hwnd, umsg, wparam, lparam);
+	}
+	
 }
 
 
@@ -253,7 +262,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	SetFocus(m_hwnd);
 
 	// Hide the mouse cursor.
-	ShowCursor(false);
+	ShowCursor(true);
 
 	return;
 }

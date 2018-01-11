@@ -45,6 +45,8 @@ public:
 	
 	ID3D11ShaderResourceView* GetTexture();
 
+	float length = -6.0f;
+
 private:
 	bool InitializeBuffers(ID3D11Device*);
 	void ShutdownBuffers();

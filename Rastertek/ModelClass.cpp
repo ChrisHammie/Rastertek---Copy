@@ -114,9 +114,49 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 	// Load the vertex array and index array with data.
 	for (int i = 0; i<m_vertexCount; i++)
 	{
-		vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
-		vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		if (i < 6)//front
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z + length);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else if (i >= 6 && i < 12)//right
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x - length, m_model[i].y, m_model[i].z);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else if (i >= 12 && i < 18)//back
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z - length);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else if (i >= 18 && i < 24)//left
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x + length, m_model[i].y, m_model[i].z);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else if (i >= 24 && i < 30)//top
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y - length, m_model[i].z);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else if (i >= 30 && i < 36)//bottom
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y + length, m_model[i].z);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		else
+		{
+			vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
+			vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+			vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+		}
+		
 
 		indices[i] = i;
 	}

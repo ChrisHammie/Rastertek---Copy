@@ -49,6 +49,45 @@ void CameraClass::SetRotation(float x, float y, float z)
 	return;
 }
 
+void CameraClass::SetPitchYawRoll(double temppitch, double tempyaw, double temproll)
+{
+	pitch = temppitch;
+	yaw = tempyaw;
+	roll = temproll;
+
+}
+
+void CameraClass::SetPitch(double tempPitch)
+{
+	pitch = tempPitch;
+}
+
+void CameraClass::SetRoll(double tempRoll)
+{
+	roll = tempRoll;
+}
+
+void CameraClass::SetYaw(double tempYaw)
+{
+	yaw = tempYaw;
+}
+
+void CameraClass::SetRotX(float tempX)
+{
+	m_rotationX = tempX;
+}
+
+void CameraClass::SetRotY(float tempY)
+{
+	m_rotationY = tempY;
+}
+
+void CameraClass::SetRotZ(float tempZ)
+{
+	m_rotationZ = tempZ;
+}
+
+
 
 XMFLOAT3 CameraClass::GetPosition()
 {

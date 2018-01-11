@@ -10,6 +10,7 @@
 #include "TextureShaderClass.h"
 #include "LightClass.h"
 #include "LightShaderClass.h"
+#include "AntTweakBar.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -37,7 +38,9 @@ public:
 
 private:
 	
-
+	float test = 0.0f;
+	float camPos = 0.0f;
+	bool rot = false;
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
 	ModelClass* m_Model;
@@ -46,6 +49,7 @@ private:
 	LightShaderClass* m_LightShader;
 	LightClass* m_Light;
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	TwBar* tweakBar;
 
 };
 

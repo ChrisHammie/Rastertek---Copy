@@ -1,7 +1,7 @@
 
 
 #include "GraphicsClass.h"
-
+#include "AntTweakBar.h"
 
 GraphicsClass::GraphicsClass()
 {
@@ -44,6 +44,12 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	TwInit(TW_DIRECT3D11, m_Direct3D->GetDevice());
+	TwWindowSize(screenWidth, screenHeight);
+
+	TwBar* tweakBar;
+	tweakBar = TwNewBar("Plant Properties");
+	
 	
 
 	// Create the model object.
@@ -73,6 +79,14 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 	m_Camera->SetPosition(0.0f, 0.0f, -10.0f);
+
+	
+
+	TwAddVarRW(tweakBar, "Test", TW_TYPE_FLOAT, &test, "");
+	
+	TwAddVarRW(tweakBar, "CamPos", TW_TYPE_FLOAT, &camPos, "");
+	
+	TwAddVarRW(tweakBar, "Rotation", TW_TYPE_BOOLCPP, &rot, "");
 	
 	// Create the color shader object.
 	m_TextureShader = new TextureShaderClass;
@@ -178,17 +192,25 @@ bool GraphicsClass::Frame(int mouseX, int mouseY)
 
 
 	// Update the rotation variable each frame.
-	rotation += (float)3.14 * 0.01f;
-	if (rotation > 360.0f)
+	if (rot)
 	{
-		rotation -= 360.0f;
+		rotation += (float)3.14 * 0.01f;
+		if (rotation > 360.0f)
+		{
+			rotation -= 360.0f;
+		}
 	}
+	
 
 	/*result = m_Text->SetMousePosition(mouseX, mouseY, m_D3D->GetDeviceContext());
 	if (!result)
 	{
 		return false;
 	}*/
+
+	camPos = m_Camera->GetPosZ();
+	
+	
 
 	// Render the graphics scene.
 	result = Render(rotation);
@@ -205,8 +227,11 @@ bool GraphicsClass::Render(float rotation)
 {
 	bool result;
 
+	
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.2f, 0.4f, 1.0f);
+
+	TwDraw();
 
 	// Generate the view matrix based on the camera's position.
 	m_Camera->Render();
@@ -216,6 +241,9 @@ bool GraphicsClass::Render(float rotation)
 	m_Direct3D->GetWorldMatrix(worldMatrix);
 	m_Camera->GetViewMatrix(viewMatrix);
 	m_Direct3D->GetProjectionMatrix(projectionMatrix);
+
+	
+	
 
 	//XMMatrixRotationY(rotation);
 	
@@ -228,8 +256,12 @@ bool GraphicsClass::Render(float rotation)
 	{
 		return false;
 	}*/
-
-	//worldMatrix *= XMMatrixRotationY(rotation);
+	if (rot)
+	{
+		worldMatrix *= XMMatrixRotationY(rotation);
+	}
+	
+	
 
 	// Render the model using the light shader.
 	result = m_LightShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix,

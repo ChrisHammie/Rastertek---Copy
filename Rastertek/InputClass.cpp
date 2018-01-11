@@ -149,10 +149,10 @@ bool InputClass::Frame()
 		return false;
 	}
 
-	// Process the changes in the mouse and keyboard.
-	ProcessInput();
+// Process the changes in the mouse and keyboard.
+ProcessInput();
 
-	return true;
+return true;
 }
 
 bool InputClass::ReadKeyboard()
@@ -219,6 +219,12 @@ void InputClass::ProcessInput()
 
 void InputClass::DetectInput(HWND hwnd)
 {
+
+	DIMOUSESTATE mouseCurrentState;
+
+	m_mouse->GetDeviceState(sizeof(DIMOUSESTATE), &mouseCurrentState);
+
+
 	//Check if escape is pressed
 	if (m_keyboardState[DIK_ESCAPE] & 0x80)
 	{
@@ -240,7 +246,18 @@ void InputClass::DetectInput(HWND hwnd)
 	{
 		tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x + 1.0f, tempGraphics->GetCamPos().y, tempGraphics->GetCamPos().z);
 	}
-	
+
+	//if ((mouseCurrentState.lX != m_mouseState.lX) || (mouseCurrentState.lY != m_mouseState.lY))
+	//{
+	//	tempRotX = tempGraphics->GetCamera()->GetRotX();
+	//	tempRotY = tempGraphics->GetCamera()->GetRotY();
+	//	//tempGraphics->GetCamera()->SetPitchYawRoll(tempGraphics->GetCamera()->GetPitch() * 0.01f, tempGraphics->GetCamera()->GetYaw() += m_mouseState.lX * 0.01f, tempGraphics->GetCamera()->GetYaw() * 0.01f);
+	//	
+	//	tempGraphics->GetCamera()->SetRotY(tempRotX += m_mouseState.lY * 0.01f);
+	//	tempGraphics->GetCamera()->SetRotX(tempRotY += m_mouseState.lX * 0.01f);
+
+	//	m_mouseState = mouseCurrentState;
+	//}
 	
 
 	return ;
