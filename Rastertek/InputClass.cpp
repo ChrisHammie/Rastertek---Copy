@@ -246,6 +246,28 @@ void InputClass::DetectInput(HWND hwnd)
 	{
 		tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x + 1.0f, tempGraphics->GetCamPos().y, tempGraphics->GetCamPos().z);
 	}
+	if (m_keyboardState[DIK_Q] & 0x80)
+	{
+		tempGraphics->GetCamera()->SetRotation(tempGraphics->GetCamRot().x - 1.0f, tempGraphics->GetCamRot().y , tempGraphics->GetCamRot().z);
+		//tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x, tempGraphics->GetCamPos().y + 1.0f, tempGraphics->GetCamPos().z);
+	}
+	if (m_keyboardState[DIK_E] & 0x80)
+	{
+		tempGraphics->GetCamera()->SetRotation(tempGraphics->GetCamRot().x + 1.0f, tempGraphics->GetCamRot().y , tempGraphics->GetCamRot().z);
+		//tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x, tempGraphics->GetCamPos().y - 1.0f, tempGraphics->GetCamPos().z);
+	}
+	if (m_keyboardState[DIK_V] & 0x80)
+	{
+		//tempGraphics->GetCamera()->SetRotation(tempGraphics->GetCamRot().x - 1.0f, tempGraphics->GetCamRot().y, tempGraphics->GetCamRot().z);
+		tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x, tempGraphics->GetCamPos().y + 1.0f, tempGraphics->GetCamPos().z);
+	}
+	if (m_keyboardState[DIK_B] & 0x80)
+	{
+		//tempGraphics->GetCamera()->SetRotation(tempGraphics->GetCamRot().x + 1.0f, tempGraphics->GetCamRot().y, tempGraphics->GetCamRot().z);
+		tempGraphics->GetCamera()->SetPosition(tempGraphics->GetCamPos().x, tempGraphics->GetCamPos().y - 1.0f, tempGraphics->GetCamPos().z);
+	}
+	
+
 
 	//if ((mouseCurrentState.lX != m_mouseState.lX) || (mouseCurrentState.lY != m_mouseState.lY))
 	//{

@@ -34,6 +34,7 @@ public:
 	CameraClass* GetCamera() { return m_Camera; }
 
 	XMFLOAT3 GetCamPos() { return m_Camera->GetPosition(); }
+	XMFLOAT3 GetCamRot() { return m_Camera->GetRotation(); }
 	//void SetCamPos() {	m_Camera->SetPosition() }
 
 private:
