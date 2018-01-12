@@ -117,5 +117,8 @@
     <Text Include="Cube.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="Flat.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
