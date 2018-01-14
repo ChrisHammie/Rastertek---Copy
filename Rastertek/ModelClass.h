@@ -9,6 +9,7 @@ using namespace DirectX;
 
 #include "TextureClass.h"
 #include <fstream>
+#include <vector>
 using namespace std;
 
 
@@ -45,7 +46,12 @@ public:
 	
 	ID3D11ShaderResourceView* GetTexture();
 
-	float length = 0.0f;
+	//float length = 0.0f;
+
+	XMFLOAT3 midpoint;
+	XMFLOAT3 one;
+	XMFLOAT3 two;
+	int iCounter = 0;
 
 private:
 	bool InitializeBuffers(ID3D11Device*);
@@ -65,6 +71,8 @@ private:
 	TextureClass* m_texture;
 
 	ModelType* m_model;
+
+	std::vector<XMFLOAT3> midpoints;
 
 };
 

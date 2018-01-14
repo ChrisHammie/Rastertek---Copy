@@ -1,4 +1,2 @@
-﻿  GraphicsClass.cpp
-c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(33): warning C4316: 'D3DClass': object allocated on the heap may not be aligned 16
-c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(76): warning C4316: 'CameraClass': object allocated on the heap may not be aligned 16
+﻿  ModelClass.cpp
   Rastertek.vcxproj -> C:\Users\chris\Desktop\Dissertation Project\Debug\Rastertek.exe
