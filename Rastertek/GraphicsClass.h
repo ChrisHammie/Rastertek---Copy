@@ -44,10 +44,12 @@ private:
 	bool rot = false;
 	D3DClass* m_Direct3D;
 	CameraClass* m_Camera;
-	ModelClass* m_Model;
+	ModelClass* m_Model1;
+	ModelClass* m_Model2;
 	TextureShaderClass* m_TextureShader;
 
-	LightShaderClass* m_LightShader;
+	LightShaderClass* m_LightShader1;
+	LightShaderClass* m_LightShader2;
 	LightClass* m_Light;
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	TwBar* tweakBar;

@@ -112,12 +112,18 @@
     <Image Include="stone01.dds">
       <Filter>Source Files</Filter>
     </Image>
+    <Image Include="water.tga">
+      <Filter>Source Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cube.txt">
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="Flat.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="square.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

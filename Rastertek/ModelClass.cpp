@@ -120,50 +120,6 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 	// Load the vertex array and index array with data.
 	for (int i = 0; i<m_vertexCount; i++)
 	{
-		
-		//if (i < 6)//front
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z + length);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else if (i >= 6 && i < 12)//right
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x - length, m_model[i].y, m_model[i].z);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else if (i >= 12 && i < 18)//back
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z - length);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else if (i >= 18 && i < 24)//left
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x + length, m_model[i].y, m_model[i].z);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else if (i >= 24 && i < 30)//top
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y - length, m_model[i].z);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else if (i >= 30 && i < 36)//bottom
-		//{
-		//	vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y + length, m_model[i].z);
-		//	vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		//	vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-		//}
-		//else
-
-		
-		//{
-			
-		//}
-
 		vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
 		vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
 		vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
@@ -193,31 +149,6 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 
 		indices[i] = i;
 	}
-
-	// Load the vertex array with data.
-	//vertices[0].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);  // Bottom left.
-	//vertices[0].texture = XMFLOAT2(0.0f, 1.0f);
-	//vertices[0].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	//vertices[1].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);  // Top Left.
-	//vertices[1].texture = XMFLOAT2(0.0f, 0.0f);
-	//vertices[1].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	//vertices[2].position = XMFLOAT3(1.0f, 1.0f, 0.0f);  // Top right.
-	//vertices[2].texture = XMFLOAT2(1.0f,0.0f);
-	//vertices[2].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	//vertices[3].position = XMFLOAT3(1.0f, -1.0f, 0.0f); //Bottom right
-	//vertices[3].texture = XMFLOAT2(1.0f, 1.0f);
-	//vertices[3].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
-
-	// Load the index array with data.
-	//indices[0] = 0;  // Bottom left.
-	//indices[1] = 1;  // Top Left.
-	//indices[2] = 2;  // Top right.
-	//indices[3] = 0;
-	//indices[4] = 2;
-	//indices[5] = 3;
 
 
 					 // Set up the description of the static vertex buffer.

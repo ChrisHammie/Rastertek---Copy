@@ -1,13 +1,4 @@
-﻿  TextureClass.cpp
-  SystemClass.cpp
-c:\users\chris\desktop\dissertation project\rastertek\systemclass.cpp(53): warning C4316: 'GraphicsClass': object allocated on the heap may not be aligned 16
-  Rastertek.cpp
-  ModelClass.cpp
-  InputClass.cpp
-c:\users\chris\desktop\dissertation project\rastertek\inputclass.cpp(98): warning C4316: 'CameraClass': object allocated on the heap may not be aligned 16
-  GraphicsClass.cpp
-c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(33): warning C4316: 'D3DClass': object allocated on the heap may not be aligned 16
-c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(76): warning C4316: 'CameraClass': object allocated on the heap may not be aligned 16
-  Generating Code...
-  LINK : C:\Users\chris\Desktop\Dissertation Project\Debug\Rastertek.exe not found or not built by the last incremental link; performing full link
+﻿  GraphicsClass.cpp
+c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(39): warning C4316: 'D3DClass': object allocated on the heap may not be aligned 16
+c:\users\chris\desktop\dissertation project\rastertek\graphicsclass.cpp(95): warning C4316: 'CameraClass': object allocated on the heap may not be aligned 16
   Rastertek.vcxproj -> C:\Users\chris\Desktop\Dissertation Project\Debug\Rastertek.exe

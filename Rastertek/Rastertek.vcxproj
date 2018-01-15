@@ -192,10 +192,12 @@
   <ItemGroup>
     <Image Include="stone01.dds" />
     <Image Include="stone01.tga" />
+    <Image Include="water.tga" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Cube.txt" />
     <Text Include="Flat.txt" />
+    <Text Include="square.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
