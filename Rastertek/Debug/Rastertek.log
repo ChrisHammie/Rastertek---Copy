@@ -1,3 +1,3 @@
 ﻿  ModelClass.cpp
-c:\users\chris\desktop\dissertation project\rastertek\modelclass.cpp(235): warning C4154: deletion of an array expression; conversion to pointer supplied
+c:\users\chris\desktop\dissertation project\rastertek\modelclass.cpp(239): warning C4154: deletion of an array expression; conversion to pointer supplied
   Rastertek.vcxproj -> C:\Users\chris\Desktop\Dissertation Project\Debug\Rastertek.exe

@@ -60,11 +60,14 @@ bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCon
 
 
 	// Initialize the vertex and index buffers.
+	
 	result = InitializeBuffers(device);
 	if (!result)
 	{
 		return false;
 	}
+	
+	
 	
 
 
@@ -157,6 +160,7 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 	//midpoints.size = m_vertexCount / 6;
 
 	// Create the vertex array.
+	m_indexCount = 36;
 	
 
 
@@ -239,6 +243,13 @@ void ModelClass::ShutdownBuffers()
 		}
 		
 	}
+
+	/*if (vertices)
+	{
+		delete[] vertices;
+		vertices = NULL;
+
+	}*/
 
 	return;
 }
@@ -326,7 +337,7 @@ bool ModelClass::LoadModel(char* filename)
 	// Set the number of indices to be the same as the vertex count.
 	//m_indexCount = m_vertexCount;
 
-	m_indexCount = 36;
+	
 
 	// Create the model using the vertex count that was read in.
 	m_model = new ModelType[m_vertexCount];
@@ -398,7 +409,7 @@ bool ModelClass::LoadModel(char* filename)
 		if (run == 1)
 		{
 			
-				indices[i+6] = i+6;
+			indices[i+6] = i+6;
 			
 		}
 		else
