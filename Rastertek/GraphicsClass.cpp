@@ -71,19 +71,36 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
-	result = m_Model1->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "stone01.tga","flat.txt");
+	/*result = m_Model1->initialLoad(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
+		return false;
+	}*/
+
+	m_Model1->CreateIndiceArray();
+
+	result = m_Model1->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "stone01.tga", "flat.txt");
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
 		return false;
 	}
+	m_Model2->SetIndice(m_Model1->GetIndice());
+
+	m_Model2->SetIndiceArray(m_Model1->GetIndiceArray());
+
+	m_Model2->SetRun(m_Model1->GetRun());
 
 	result = m_Model2->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "water.tga", "square.txt");
 	if (!result)
 	{
+
 		MessageBox(hwnd, L"Could not initialize the model object.", L"Error", MB_OK);
 		return false;
 	}
+
+	
 	// Initialize the model object.
 	/*result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), "stone01.tga");
 	if (!result)

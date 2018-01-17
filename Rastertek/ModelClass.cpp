@@ -9,7 +9,9 @@ ModelClass::ModelClass()
 
 	m_texture = 0;
 
-	m_model = 0;
+	
+
+	m_model = NULL;
 }
 
 
@@ -20,6 +22,28 @@ ModelClass::ModelClass(const ModelClass& other)
 
 ModelClass::~ModelClass()
 {
+}
+
+bool ModelClass::initialLoad(ID3D11Device * device, ID3D11DeviceContext * deviceContext)
+{
+	bool result;
+
+
+	result = Initialize(device, deviceContext, "stone01.tga", "Flat.txt");
+	if (!result)
+	{
+		return false;
+	}
+	/*result = Initialize(device, deviceContext, "water.tga", "square.txt");
+	if (!result)
+	{
+		return false;
+	}*/
+
+	
+
+	
+	return true;
 }
 
 
@@ -33,18 +57,23 @@ bool ModelClass::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceCon
 	{
 		return false;
 	}
+
+
 	// Initialize the vertex and index buffers.
 	result = InitializeBuffers(device);
 	if (!result)
 	{
 		return false;
 	}
+	
+
 
 	result = LoadTexture(device, deviceContext, textureFileName);
 	if (!result)
 	{
 		return false;
 	}
+
 	
 
 	return true;
@@ -76,6 +105,31 @@ int ModelClass::GetIndexCount()
 	return m_indexCount;
 }
 
+void ModelClass::CreateIndiceArray()
+{
+	m_indexCount = 36;
+	/*indices = new unsigned long[m_indexCount];
+	if (!indices)
+	{
+		return;
+	}*/
+}
+
+void ModelClass::SetIndiceArray(unsigned long indice[])
+{
+	/*m_indexCount = 36;
+	indices = new unsigned long[m_indexCount];
+	if (!indices)
+	{
+		return;
+	}*/
+	//indices = indice;
+	for (int i = 0; i < 36; i++)
+	{
+		indices[i] = indice[i];
+	}
+}
+
 ID3D11ShaderResourceView* ModelClass::GetTexture()
 {
 	return m_texture->GetTexture();
@@ -84,8 +138,7 @@ ID3D11ShaderResourceView* ModelClass::GetTexture()
 
 bool ModelClass::InitializeBuffers(ID3D11Device* device)
 {
-	VertexType* vertices;
-	unsigned long* indices;
+	
 	D3D11_BUFFER_DESC vertexBufferDesc, indexBufferDesc;
 	D3D11_SUBRESOURCE_DATA vertexData, indexData;
 	HRESULT result;
@@ -104,51 +157,7 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 	//midpoints.size = m_vertexCount / 6;
 
 	// Create the vertex array.
-	vertices = new VertexType[m_vertexCount];
-	if (!vertices)
-	{
-		return false;
-	}
-
-	// Create the index array.
-	indices = new unsigned long[m_indexCount];
-	if (!indices)
-	{
-		return false;
-	}
-
-	// Load the vertex array and index array with data.
-	for (int i = 0; i<m_vertexCount; i++)
-	{
-		vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
-		vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
-		vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
-
-		
-
-		if (iCounter == 1)
-		{
-			one = vertices[i].position;
-			
-		}
-		else if (iCounter == 2)
-		{
-			two = vertices[i].position;
-
-			midpoint.x = (one.x + two.x) / 2;
-			midpoint.y = (one.y + two.y) / 2;
-			midpoint.z = (one.z + two.z) / 2;
-
-			midpoints.push_back(midpoint);
-		}
-		iCounter++;
-		if (iCounter == 6)
-		{
-			iCounter = 0;
-		}
-
-		indices[i] = i;
-	}
+	
 
 
 					 // Set up the description of the static vertex buffer.
@@ -193,10 +202,13 @@ bool ModelClass::InitializeBuffers(ID3D11Device* device)
 
 	// Release the arrays now that the vertex and index buffers have been created and loaded.
 	delete[] vertices;
-	vertices = 0;
+	vertices = NULL;
 
-	delete[] indices;
-	indices = 0;
+	/*delete[] indices;
+	indices = NULL;*/
+
+	/*delete[] m_model;
+	m_model = NULL;*/
 
 	return true;
 }
@@ -216,6 +228,16 @@ void ModelClass::ShutdownBuffers()
 	{
 		m_vertexBuffer->Release();
 		m_vertexBuffer = 0;
+	}
+
+	if (indices)
+	{
+		delete[] indices;
+		for (int i = 0; i < 36; i++)
+		{
+			indices[i] = NULL;
+		}
+		
 	}
 
 	return;
@@ -279,6 +301,7 @@ bool ModelClass::LoadModel(char* filename)
 	ifstream fin;
 	char input;
 	int i;
+	//bool result;
 
 
 	// Open the model file.
@@ -301,7 +324,9 @@ bool ModelClass::LoadModel(char* filename)
 	fin >> m_vertexCount;
 
 	// Set the number of indices to be the same as the vertex count.
-	m_indexCount = m_vertexCount;
+	//m_indexCount = m_vertexCount;
+
+	m_indexCount = 36;
 
 	// Create the model using the vertex count that was read in.
 	m_model = new ModelType[m_vertexCount];
@@ -329,6 +354,65 @@ bool ModelClass::LoadModel(char* filename)
 
 	// Close the model file.
 	fin.close();
+
+	vertices = new VertexType[m_vertexCount];
+	if (!vertices)
+	{
+		return false;
+	}
+
+	// Create the index array.
+	
+
+	// Load the vertex array and index array with data.
+	for (int i = 0; i<m_vertexCount; i++)
+	{
+		
+		vertices[i].position = XMFLOAT3(m_model[i].x, m_model[i].y, m_model[i].z);
+		vertices[i].texture = XMFLOAT2(m_model[i].tu, m_model[i].tv);
+		vertices[i].normal = XMFLOAT3(m_model[i].nx, m_model[i].ny, m_model[i].nz);
+
+
+
+		if (iCounter == 1)
+		{
+			one = vertices[i].position;
+
+		}
+		else if (iCounter == 2)
+		{
+			two = vertices[i].position;
+
+			midpoint.x = (one.x + two.x) / 2;
+			midpoint.y = (one.y + two.y) / 2;
+			midpoint.z = (one.z + two.z) / 2;
+
+			midpoints.push_back(midpoint);
+		}
+		iCounter++;
+		if (iCounter == 6)
+		{
+			iCounter = 0;
+		}
+
+		if (run == 1)
+		{
+			
+				indices[i+6] = i+6;
+			
+		}
+		else
+		{
+			indices[i] = i;
+		}
+		
+		
+		//indicesNew++;
+		//m_indexCount++;
+	}
+
+	
+	run++;
 
 	return true;
 }

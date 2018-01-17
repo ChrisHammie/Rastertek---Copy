@@ -72,8 +72,9 @@ bool TextureClass::Initalize(ID3D11Device* device, ID3D11DeviceContext* deviceCo
 	deviceContext->GenerateMips(m_textureView);
 
 	delete[] m_targaData;
-
 	m_targaData = 0;
+
+
 
 	return true;
 }

@@ -38,11 +38,28 @@ public:
 	ModelClass(const ModelClass&);
 	~ModelClass();
 
+	bool initialLoad(ID3D11Device*, ID3D11DeviceContext*);
+
 	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, char*, char*);
 	void Shutdown();
 	void Render(ID3D11DeviceContext*);
+	bool InitializeBuffers(ID3D11Device*);
 
 	int GetIndexCount();
+
+	int GetIndice() { return indicesNew; }
+	void SetIndice(int indice) { indicesNew = indice; }
+
+	int GetVertexCount(){ return m_vertexCount; }
+	void SetVertexCount(int vertex) { m_vertexCount = vertex; }
+
+
+	void CreateIndiceArray();
+	void SetIndiceArray(unsigned long indice[]);
+	unsigned long* GetIndiceArray() { return indices; }
+
+	int GetRun() { return run; }
+	void SetRun(int oldRun) { run = oldRun; }
 	
 	ID3D11ShaderResourceView* GetTexture();
 
@@ -54,7 +71,7 @@ public:
 	int iCounter = 0;
 
 private:
-	bool InitializeBuffers(ID3D11Device*);
+	
 	void ShutdownBuffers();
 	void RenderBuffers(ID3D11DeviceContext*);
 	
@@ -73,6 +90,13 @@ private:
 	ModelType* m_model;
 
 	std::vector<XMFLOAT3> midpoints;
+
+	VertexType* vertices;
+	unsigned long indices[36];
+	int indicesNew = 0;
+	int count = 0;
+
+	int run = 0;
 
 };
 
